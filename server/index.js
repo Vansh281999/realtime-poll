@@ -16,7 +16,31 @@ const io = new Server(server, { cors: { origin: "*" } });
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI);
+const connectDB = async () => {
+    const maxRetries = 5;
+    const retryDelay = 5000; // 5 seconds
+    
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            console.log(`Attempting to connect to MongoDB (${attempt}/${maxRetries})...`);
+            await mongoose.connect(process.env.MONGO_URI);
+            console.log('✅ Connected to MongoDB');
+            return; // Connection successful
+        } catch (err) {
+            console.error(`❌ MongoDB connection error (attempt ${attempt}):`, err.message);
+            
+            if (attempt === maxRetries) {
+                console.error('❌ Max retries reached. Exiting...');
+                process.exit(1);
+            }
+            
+            console.log(`⏳ Retrying in ${retryDelay / 1000} seconds...`);
+            await new Promise(resolve => setTimeout(resolve, retryDelay));
+        }
+    }
+};
+
+connectDB();
 
 const PollSchema = new mongoose.Schema({
   _id: String,
