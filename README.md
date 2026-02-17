@@ -70,15 +70,18 @@ localStorage.setItem(`voted_${id}`, true);
 ## Installation
 
 ### Prerequisites
-- Node.js
-- MongoDB (local or cloud)
+- Node.js (version 14 or higher)
+- MongoDB (local or cloud - follow [MongoDB Atlas Setup Guide](./MONGODB_SETUP.md))
 - npm or yarn
 
 ### Backend Setup
 1. Navigate to the `server` directory
 2. Install dependencies: `npm install`
-3. Create a `.env` file with your MongoDB connection string
+3. Create a `.env` file with your MongoDB connection string (see [MongoDB Setup](./MONGODB_SETUP.md))
 4. Start the server: `npm start`
+
+### MongoDB Setup
+For detailed instructions on setting up a free MongoDB Atlas database, see the [MongoDB Atlas Setup Guide](./MONGODB_SETUP.md)
 
 ### Frontend Setup
 1. Navigate to the `client` directory
