@@ -110,17 +110,59 @@ For detailed instructions on setting up a free MongoDB Atlas database, see the [
 
 ## Deployment
 
-The application can be deployed to various platforms:
+### Current Deployment Status
 
-### Frontend
-- Vercel
-- Netlify
-- GitHub Pages
+| Service | Status | URL |
+|---------|--------|-----|
+| Frontend | 🚀 Deployed | https://realtime-poll.vercel.app/ |
+| Backend | 🚀 Deployed | https://realtime-poll.onrender.com/ |
+| Database | 🚀 Connected | MongoDB Atlas |
 
-### Backend
-- Heroku
-- Render
-- DigitalOcean
+### Frontend Deployment Options
+
+#### Vercel (Recommended)
+1. Go to [Vercel](https://vercel.com)
+2. Import your GitHub repository
+3. Configure:
+   - **Framework Preset**: Vite
+   - **Root Directory**: `client`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+   - **Environment Variables**:
+     - `VITE_API_URL`: `https://realtime-poll.onrender.com`
+
+#### Netlify
+1. Go to [Netlify](https://netlify.com)
+2. Connect to GitHub
+3. Import your repository
+4. Configure build settings
+
+#### GitHub Pages
+1. Go to your repository settings
+2. Configure Pages from `client` directory
+
+### Backend Deployment Options
+
+#### Render (Recommended)
+1. Go to [Render](https://render.com)
+2. Create new Web Service
+3. Connect GitHub
+4. Configure:
+   - **Root Directory**: `server`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+   - **Environment Variables**:
+     - `MONGO_URI`: Your MongoDB Atlas connection string
+
+#### Heroku
+1. Go to [Heroku](https://heroku.com)
+2. Create new app
+3. Connect GitHub
+4. Deploy
+
+#### DigitalOcean
+1. Use Droplets or App Platform
+2. Configure Docker or Node.js environment
 
 ## License
 
